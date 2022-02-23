@@ -162,11 +162,12 @@ func readModuleConfig(filePath string) (*bootconfig.Config, []byte, []byte, erro
 }
 
 type Environment struct {
-	Config          *bootconfig.Config
-	K8SClient       *kubernetes.Clientset
-	DynamicClient   dynamic.Interface
-	HttpPathHandler common.PathHandler
-	Stop            <-chan struct{}
+	Config           *bootconfig.Config
+	K8SClient        *kubernetes.Clientset
+	K8SRemoteClients []*kubernetes.Clientset
+	DynamicClient    dynamic.Interface
+	HttpPathHandler  common.PathHandler
+	Stop             <-chan struct{}
 }
 
 func (env *Environment) IstioRev() string {
